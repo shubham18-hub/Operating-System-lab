@@ -1,0 +1,41 @@
+/*write a program to find some of element in an array within child process and then check whether given sum is prime or not in given process*/
+#include <iostream>
+#include <unistd.h>
+#include <sys/wait.h>
+int main(){
+    int n,i=0,prime=1,sum=0;
+    printf("Enter a number: ");
+    scanf("%d",&n);
+    int arr[n];
+    printf("Enter numbers : ");
+    for(i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+
+    if(fork()==0){
+        for(i = 0;i<n;i++){
+            sum =sum+arr[i];
+        }
+        printf("Child : Sum = %d \n",sum);
+    }
+    else{
+            wait(NULL);
+            for(i=0;i<n;i++){
+            sum = sum+arr[i];
+            }
+            for(i=2;i<sum;i++)
+            {
+                if(sum%i==0)
+                {
+                    prime = 0;
+                    break;
+                }
+            }
+            if(prime && sum>1)
+            printf("Parent: Sum is Prime \n");
+            else
+            printf("Parent: Sum is not Prime ");
+    }
+    return 0;
+
+}
