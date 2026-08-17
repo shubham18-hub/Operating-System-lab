@@ -1,3 +1,5 @@
+/* WAP to check the number is prime or not in child & calculate factorial in parent process*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
