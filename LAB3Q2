@@ -1,0 +1,53 @@
+/*write a program to read string from the user within child process and then print all the permutations of the charcters of thr given string*/
+#include <iostream>
+#include <string>
+#include <unistd.h>
+#include <sys/wait.h>
+
+void permute(std::string &str, int left, int right) {
+    if (left == right) {
+        std::cout << str << "\n";
+        return;
+    }
+    for (int i = left; i <= right; i++) {
+      
+        std::swap(str[left], str[i]);
+        permute(str, left + 1, right);
+        std::swap(str[left], str[i]);
+    }
+}
+
+int main() {
+    pid_t pid = fork();
+
+    if (pid < 0) {
+      
+        std::cerr << "Fork failed!\n";
+        return 1;
+    } 
+    else if (pid == 0) {
+      
+        std::cout << "[Child Process (PID: " << getpid() << ")]\n";
+        std::string inputStr;
+        
+        std::cout << "Enter a string: ";
+        if (std::cin >> inputStr) {
+            std::cout << "\nPermutations of the string:\n";
+            permute(inputStr, 0, inputStr.length() - 1);
+        }
+        
+     
+        _exit(0);
+    } 
+    else {
+      
+        std::cout << "[Parent Process (PID: " << getpid() << ")] Waiting for child process to complete...\n";
+        
+       
+        wait(NULL);
+        
+        std::cout << "[Parent Process] Child process finished. Exiting.\n";
+    }
+
+    return 0;
+}
