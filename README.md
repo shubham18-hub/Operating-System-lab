@@ -10,7 +10,7 @@ Section: CSE IOS
 
 Class Roll No.: 54
 
-University Roll No.: 240212368
+University Roll No.: 2025484
 
 Subject: Operating System Lab
 
@@ -89,7 +89,7 @@ B.Tech | Section: CSE-IOS
 
 Class Roll No.: 54
 
-University Roll No.: 2025368
+University Roll No.: 2025484
 
 Faculty: Dr. Shiddhant Thapliya
 
